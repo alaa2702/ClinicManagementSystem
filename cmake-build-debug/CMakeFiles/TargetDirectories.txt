@@ -1,0 +1,3 @@
+C:/Users/Alaa/OneDrive/Documents/GitHub/ClinicManagementSystem/cmake-build-debug/CMakeFiles/ClinicManagementSystem.dir
+C:/Users/Alaa/OneDrive/Documents/GitHub/ClinicManagementSystem/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Alaa/OneDrive/Documents/GitHub/ClinicManagementSystem/cmake-build-debug/CMakeFiles/rebuild_cache.dir
