@@ -10,7 +10,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include "../stdTypes.h"
-#include "PatientDataList.h"
+#include "../PatientDataList/PatientDataList.h"
 
+
+void ReserveASlotWithTheDoctor(Node* head);
 
 #endif //CLINICMANAGEMENTSYSTEM_ADMIN_H
