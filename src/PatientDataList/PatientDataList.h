@@ -26,8 +26,8 @@ typedef struct Patient{
 void insertPatient(struct Node** head);
 void deletePatient(struct Node** head, Patient data);
 void printPatient(struct Patient* data);
-Patient* searchPatient(struct Node* head, Patient data);
-void updatePatient(struct Node* head, Patient data);
+Patient* searchPatient(struct Node* head, Patient* data);
+void updatePatient(struct Node* head, Patient* data);
 
 
 #endif //CLINICMANAGEMENTSYSTEM_PATIENTDATALIST_H
