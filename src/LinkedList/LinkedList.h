@@ -19,12 +19,11 @@ typedef struct Node {
     struct Node* next;
 }Node;
 /* Function prototypes */
-Node* createNode();
-void insertAtIndex(Node** head, struct Patient *data);
-void deleteAtIndex(Node** head, struct Patient* data);
-void printList(Node* head);
-Node* search(Node* head, struct Patient* data);
-void update(Node* head, struct Patient* data);
-void freeNode(Node** head);
-
+Node* createNode();// create a new node
+void insertAtIndex(Node** head, struct Patient *data);// insert a new node at the end of the list
+void deleteAtIndex(Node** head, struct Patient* data);// delete a node from the list
+void printList(Node* head);// print the list
+Node* search(Node* head, u16 id);// search for a node in the list using the patient id
+void update(Node* head, struct Patient* data); // update a node in the list
+u16 getLength(Node* head);// get the length of the list
 #endif //CLINICMANAGEMENTSYSTEM_LINKEDLIST_H

@@ -1,6 +1,6 @@
 /*
  * @author: Alaa Mohammed
- * @brief: standard types
+ * @brief: Patient Data List functions implementation
  * @date: 27/07/2024
  * */
 
@@ -12,13 +12,29 @@ void insertPatient(Node** head){
     data->name = StringCheck(100);
     printf("Enter Patient Age: ");
     data->age = IntCheck();
-    printf("Enter Patient ID: ");
-    data->id = IntCheck();
+    checkID(*head, data);
     printf("Enter Patient Gender: ");
     data->gender = StringCheck(10);
     data->slotReserved = false;
     data->slot = (u8*)malloc(20 * sizeof(u8));
     insertAtIndex(head, data);
+}
+void checkID(Node* head, Patient* data){
+    printf("Enter Patient ID (no 1->10): ");
+    data->id = IntCheck();
+    while (!validateID(head, data->id)){
+        data->id = IntCheck();
+    }
+}
+bool validateID(Node* head, u16 id){
+    if(id < 1 || id > 10){
+        printf("Please enter a valid ID: ");
+        return false;
+    } else if(checkForPatient(head, id)){
+        printf("Please enter a unique ID: ");
+        return false;
+    }
+    return true;
 }
 void deletePatient(Node** head, Patient *data){
     deleteAtIndex(head, data);
@@ -36,11 +52,18 @@ void printPatient(Patient* data){
         printf("Patient Slot: Not Reserved\n");
     }
 }
-Patient* searchPatient(Node* head, Patient* data){
-    Node* temp = search(head, data);
+bool checkForPatient(Node* head, u16 id){
+    Node* temp = search(head, id);
     if(temp == NULL){
-        printf("Patient not found\n");
-        return NULL;
+        return false;
     }
+    return true;
+}
+Patient* getPatient(Node* head, u16 id){
+    Node* temp = search(head, id);
     return temp->data;
-void updatePatient(Node* head, Patient data);
+}
+void updatePatient(Node* head, Patient* data){
+
+       update(head, data);
+}

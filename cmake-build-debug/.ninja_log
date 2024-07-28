@@ -1,10 +1,7 @@
 # ninja log v5
-12	342	7438198836355250	CMakeFiles/ClinicManagementSystem.dir/src/main.cpp.obj	61ed93ad6192892d
-345	794	7438198840728414	ClinicManagementSystem.exe	8dbe0905ae81c53f
 3	262	7438299875806825	CMakeFiles/ClinicManagementSystem.dir/src/main.cpp.obj	61ed93ad6192892d
+345	794	7438198840728414	ClinicManagementSystem.exe	8dbe0905ae81c53f
 37	312	7438299876338944	CMakeFiles/ClinicManagementSystem.dir/src/handelingInputs/HandelingInputs.cpp.obj	8184bb81666fa079
-19	213	7438302811908141	CMakeFiles/ClinicManagementSystem.dir/src/PatientDataList/PatientDataList.cpp.obj	85d911874b6f17c4
-4	165	7438303948082694	CMakeFiles/ClinicManagementSystem.dir/src/Admin/Admin.cpp.obj	e95f4ddc681ebbb1
-11	169	7438305175011291	CMakeFiles/ClinicManagementSystem.dir/src/PatientDataList/PatientDataList.cpp.obj	85d911874b6f17c4
 4	173	7438305175061375	CMakeFiles/ClinicManagementSystem.dir/src/Admin/Admin.cpp.obj	e95f4ddc681ebbb1
+11	169	7438305175011291	CMakeFiles/ClinicManagementSystem.dir/src/PatientDataList/PatientDataList.cpp.obj	85d911874b6f17c4
 18	182	7438305175172797	CMakeFiles/ClinicManagementSystem.dir/src/LinkedList/LinkedList.cpp.obj	ccb02ab995d829dd

@@ -79,6 +79,12 @@ build CMakeFiles/ClinicManagementSystem.dir/src/handelingInputs/HandelingInputs.
   OBJECT_DIR = CMakeFiles\ClinicManagementSystem.dir
   OBJECT_FILE_DIR = CMakeFiles\ClinicManagementSystem.dir\src\handelingInputs
 
+build CMakeFiles/ClinicManagementSystem.dir/src/user/user.cpp.obj: CXX_COMPILER__ClinicManagementSystem_Debug C$:/Users/Alaa/OneDrive/Documents/GitHub/ClinicManagementSystem/src/user/user.cpp || cmake_object_order_depends_target_ClinicManagementSystem
+  DEP_FILE = CMakeFiles\ClinicManagementSystem.dir\src\user\user.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always -std=gnu++14
+  OBJECT_DIR = CMakeFiles\ClinicManagementSystem.dir
+  OBJECT_FILE_DIR = CMakeFiles\ClinicManagementSystem.dir\src\user
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target ClinicManagementSystem
@@ -87,7 +93,7 @@ build CMakeFiles/ClinicManagementSystem.dir/src/handelingInputs/HandelingInputs.
 #############################################
 # Link the executable ClinicManagementSystem.exe
 
-build ClinicManagementSystem.exe: CXX_EXECUTABLE_LINKER__ClinicManagementSystem_Debug CMakeFiles/ClinicManagementSystem.dir/src/main.cpp.obj CMakeFiles/ClinicManagementSystem.dir/src/Admin/Admin.cpp.obj CMakeFiles/ClinicManagementSystem.dir/src/LinkedList/LinkedList.cpp.obj CMakeFiles/ClinicManagementSystem.dir/src/PatientDataList/PatientDataList.cpp.obj CMakeFiles/ClinicManagementSystem.dir/src/handelingInputs/HandelingInputs.cpp.obj
+build ClinicManagementSystem.exe: CXX_EXECUTABLE_LINKER__ClinicManagementSystem_Debug CMakeFiles/ClinicManagementSystem.dir/src/main.cpp.obj CMakeFiles/ClinicManagementSystem.dir/src/Admin/Admin.cpp.obj CMakeFiles/ClinicManagementSystem.dir/src/LinkedList/LinkedList.cpp.obj CMakeFiles/ClinicManagementSystem.dir/src/PatientDataList/PatientDataList.cpp.obj CMakeFiles/ClinicManagementSystem.dir/src/handelingInputs/HandelingInputs.cpp.obj CMakeFiles/ClinicManagementSystem.dir/src/user/user.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\ClinicManagementSystem.dir

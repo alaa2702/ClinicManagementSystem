@@ -24,10 +24,12 @@ typedef struct Patient{
 } Patient;
  /* Function prototypes */
 void insertPatient(struct Node** head);
+void checkID(struct Node* head, Patient* data);
 void deletePatient(struct Node** head, Patient data);
 void printPatient(struct Patient* data);
-Patient* searchPatient(struct Node* head, Patient* data);
+bool checkForPatient(struct Node* head, u16 id);
+Patient* getPatient(struct Node* head, u16 id);
 void updatePatient(struct Node* head, Patient* data);
-
+bool validateID(Node* head, u16 id);
 
 #endif //CLINICMANAGEMENTSYSTEM_PATIENTDATALIST_H

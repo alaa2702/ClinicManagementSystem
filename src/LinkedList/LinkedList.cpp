@@ -83,11 +83,12 @@ void printList(Node* head) {
         temp = temp->next;
     }
 }
-// Search for a node with the given Patient data
-Node* search(Node* head, Patient data){
+
+// Search for a node with the given ID
+Node* search(Node* head, u16 id){
     Node* current = head;
     while(current != NULL){
-        if(current->data->id == data.id){
+        if(current->data->id == id){
             return current;
         }
         current = current->next;
@@ -95,9 +96,19 @@ Node* search(Node* head, Patient data){
     return NULL;
 
 }
+
 // Update a node with the given Patient data
-void update(Node* head, Patient data){
-    search(head, data)->data = &data;
+void update(Node* head, Patient* data){
+    search(head, data->id)->data = data;
 
 }
-
+// Get the length of the list
+u16 getLength(Node* head){
+    u16 count = 0;
+    Node* current = head;
+    while(current != NULL){
+        count++;
+        current = current->next;
+    }
+    return count;
+}
