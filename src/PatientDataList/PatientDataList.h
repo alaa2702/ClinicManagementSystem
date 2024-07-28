@@ -10,23 +10,24 @@
 #include <stdlib.h>
 #include <string.h>
 #include "../stdTypes.h"
-#include "../handelingInputs/HandlingInputs.h"
+#include "../handelingInputs/HandelingInputs.h"
 #include "../LinkedList/LinkedList.h"
 
 /* Patient structure */
- typedef struct PatientData {
-    u8 name[100];
+typedef struct Patient{
+    u8* name;
     u16 age;
     u16 id;
-    u8 gender[10];
-    u8 slot[20];
-}Patient;
+    u8* gender;
+    u8* slot;
+    bool slotReserved;
+} Patient;
  /* Function prototypes */
-void insertPatient(Node** head);
-void deletePatient(Node** head, Patient data);
-void printPatient(Patient* data);
-Patient* searchPatient(Node* head, Patient data);
-void updatePatient(Node* head, Patient data);
+void insertPatient(struct Node** head);
+void deletePatient(struct Node** head, Patient data);
+void printPatient(struct Patient* data);
+Patient* searchPatient(struct Node* head, Patient data);
+void updatePatient(struct Node* head, Patient data);
 
 
 #endif //CLINICMANAGEMENTSYSTEM_PATIENTDATALIST_H

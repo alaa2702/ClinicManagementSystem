@@ -7,24 +7,24 @@
 #ifndef CLINICMANAGEMENTSYSTEM_LINKEDLIST_H
 #define CLINICMANAGEMENTSYSTEM_LINKEDLIST_H
 /* Includes */
-#include "../PatientDataList/PatientDataList.h"
 #include "../stdTypes.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "../PatientDataList/PatientDataList.h"
+
 /* Node structure */
 typedef struct Node {
-    Patient *data;
+    struct Patient *data ;
     struct Node* next;
 }Node;
 /* Function prototypes */
 Node* createNode();
-void insertAtEnd(Node** head, Patient data);
-void insertAtIndex(Node** head, Patient data);
-void deleteAtIndex(Node** head,Patient data);
+void insertAtIndex(Node** head, struct Patient *data);
+void deleteAtIndex(Node** head, struct Patient* data);
 void printList(Node* head);
-Node* search(Node* head, Patient data);
-void update(Node* head, Patient data);
+Node* search(Node* head, struct Patient* data);
+void update(Node* head, struct Patient* data);
 void freeNode(Node** head);
 
 #endif //CLINICMANAGEMENTSYSTEM_LINKEDLIST_H
