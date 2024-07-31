@@ -67,3 +67,7 @@ void updatePatient(Node* head, Patient* data){
 
        update(head, data);
 }
+void printSlotWithID(Patient* patient){
+    printf("Patient Slot: %s\t", patient->slot);
+    printf("ID: %d\n", patient->id);
+}

@@ -31,5 +31,5 @@ bool checkForPatient(struct Node* head, u16 id);
 Patient* getPatient(struct Node* head, u16 id);
 void updatePatient(struct Node* head, Patient* data);
 bool validateID(Node* head, u16 id);
-
+void printSlotWithID(Patient* patient);
 #endif //CLINICMANAGEMENTSYSTEM_PATIENTDATALIST_H

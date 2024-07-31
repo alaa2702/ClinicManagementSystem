@@ -4,6 +4,7 @@
  * @Date: 28/07/2024
  */
 #include "HandelingInputs.h"
+
 u8* StringCheck(u16 size) {
     u8* str = (u8*)malloc(size * sizeof(u8));
     u8 c;
@@ -35,6 +36,34 @@ f32 FloatCheck(){
         test = scanf_s("%f%c", &n, &c);
     }
     return n;
-
-
 }
+ s16 passwordScanner() {
+     u8 password[100];
+     u16 i = 0;
+     s16 Num = 0;
+     u8 ch;
+
+     printf("Enter password: ");
+     while ((ch = _getch()) != '\r') { // '\r' is the Enter key
+         if (i < sizeof(password) - 1) {
+             password[i++] = ch;
+             printf("*"); // Print asterisk instead of the character
+         }
+     }
+     password[i] = '\0'; // Null-terminate the string
+     printf("\nYour password is: %s\n", password);
+     //check if the returned value is a number
+     for (i = 0; password[i] != '\0'; i++) {
+         if (!isdigit(password[i])) {
+             return -1;
+         }
+     }
+     i = 0;
+     //converting the password to integer manually
+     while (password[i] != '\0') {
+         Num = Num * 10 + (password[i] - '0');
+         i++;
+     }
+     return Num;
+
+ }

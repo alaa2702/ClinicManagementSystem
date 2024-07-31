@@ -13,7 +13,7 @@
 #include "../PatientDataList/PatientDataList.h"
 
 Node* head = NULL;
-bool checkPasswordForAdmin(u8* password);
+bool checkPasswordForAdmin();
 void AdminMenu();
 void AddNewPatientRecord();
 void EditPatientRecord ();

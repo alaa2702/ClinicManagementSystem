@@ -16,5 +16,5 @@
 extern Node* head;
 void UserMenu();
 void ViewPatientRecord();
-void ViewAllPatientRecords();
+void ViewTodayReservations();
 #endif //CLINICMANAGEMENTSYSTEM_USER_H

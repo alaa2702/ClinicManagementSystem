@@ -5,6 +5,22 @@
  * */
 
 #include "Admin.h"
+bool checkPasswordForAdmin() {
+    s16 password = passwordScanner();
+    u16 correctPassword = 1234;
+    for (u16 i = 0; i < 3; i++) {
+        if (password == -1) {
+            printf("Password digits must be numbers\n");
+            password = passwordScanner();
+        } else if (password == correctPassword) {
+            return true;
+        } else {
+            printf("Wrong password, try again\n");
+            password = passwordScanner();
+        }
+    }
+    return false;
+}
 
 void AdminMenu(){
     u16 choice = 0;
