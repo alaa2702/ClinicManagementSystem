@@ -12,6 +12,9 @@
 #include <string.h>
 #include "../stdTypes.h"
 #include "../PatientDataList/PatientDataList.h"
+#include "../handelingInputs/HandelingInputs.h"
+#include "../LinkedList/LinkedList.h"
+#include "../Admin/Admin.h"
 
 extern Node* head;
 void UserMenu();

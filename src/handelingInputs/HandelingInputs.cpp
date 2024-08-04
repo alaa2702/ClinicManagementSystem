@@ -9,21 +9,29 @@ u8* StringCheck(u16 size) {
     u8* str = (u8*)malloc(size * sizeof(u8));
     u8 c;
     fflush(stdin);//clear input buffer (stdin)
-    scanf_s("%s%c", str, size, &c);
-
+    for (int i = 0; i < size; ++i) {
+        c = getchar();
+        if (c == '\n') {
+            str[i] = '\0';
+            break;
+        }
+        str[i] = c;
+    }
     return str;
 
 }
+
 u16 IntCheck() {
-    u16 n;
+    s16 n;
     u8 c;
     int test = scanf_s("%d%c", &n, &c);
     while (!test || n < 0 || c !=   '\n') {
-        printf("\ninvalid input\nEnter again\n");
-        scanf_s("%*[^\n]");//clear input buffer
+        printf("invalid input\nPlease enter a positive number ");
+        if(!test)
+            scanf_s("%*[^\n]");//clear input buffer
         test = scanf_s("%d%c", &n, &c);
     }
-    return n;
+    return (u16) n;
 }
 
 f32 FloatCheck(){
@@ -49,9 +57,11 @@ f32 FloatCheck(){
              password[i++] = ch;
              printf("*"); // Print asterisk instead of the character
          }
+          // Null-terminate the string
      }
+     printf("\n");
      password[i] = '\0'; // Null-terminate the string
-     printf("\nYour password is: %s\n", password);
+
      //check if the returned value is a number
      for (i = 0; password[i] != '\0'; i++) {
          if (!isdigit(password[i])) {

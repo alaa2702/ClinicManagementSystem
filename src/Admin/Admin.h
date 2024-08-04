@@ -12,12 +12,14 @@
 #include "../stdTypes.h"
 #include "../PatientDataList/PatientDataList.h"
 
-Node* head = NULL;
 bool checkPasswordForAdmin();
 void AdminMenu();
 void AddNewPatientRecord();
 void EditPatientRecord ();
 void ReserveASlotWithTheDoctor();
+bool checkIfAllSlotReserved();
+bool checkIfAllSlotNotReserved();
 void CancelReservation();
-Node* getHead();
+void setSlotAvailable(u16 slot);
+
 #endif //CLINICMANAGEMENTSYSTEM_ADMIN_H

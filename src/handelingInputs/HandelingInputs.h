@@ -20,4 +20,5 @@ u16 IntCheck();
 f32 FloatCheck();
 s16 passwordScanner();
 
+
 #endif //CLINICMANAGEMENTSYSTEM_HANDELINGINPUTS_H

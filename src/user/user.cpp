@@ -28,24 +28,36 @@ void UserMenu(){
     }
 }
 void ViewPatientRecord(){
+
     u16 id;
-    printf("Enter the name of the patient ID: ");
-    id = IntCheck();
-    Node* patient = search(head, id);
-    if (patient == NULL){
+    if (head == NULL){
+        printf("No Patients\n");
+        return;
+    }
+    id = scanID(head);
+    Patient* patient =NULL;
+    if (!checkForPatient(head, id)){
         printf("Patient not found\n");
         return;
     }
-    printf("Patient data:\n");
-    printPatient(patient->data);
+    patient =getPatient(head, id);
+    printf("______patient record______\n");
+    printPatient(patient);
 }
 void ViewTodayReservations(){
     // search for the list of patients who have a reservation
     Node* temp = head;
+    printf("Today's Reservations:\n");
+    if(checkIfAllSlotNotReserved()){
+        printf("No reservations\n");
+        return;
+    }
+    // loop through the list
     while (temp != NULL){
-        if (temp->data->slotReserved == 1){
+        if (temp->data->slotReserved){
             printSlotWithID(temp->data);
         }
         temp = temp->next;
     }
+
 }

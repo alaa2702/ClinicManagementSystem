@@ -5,18 +5,21 @@
  * */
 
 #include "Admin.h"
+Node *head = NULL;
+u16 slotSize = 5;
+char* SlotOptions[] = {(char*)"2:00 PM to 2:30 PM", (char*)"2:30 PM to 3:00 PM", (char*)"3:00 PM to 3:30 PM", (char*)"4:00 PM to 4:30 PM", (char*)"4:30 PM to 5:00 PM"};
 bool checkPasswordForAdmin() {
-    s16 password = passwordScanner();
+    s16 password = 0;
     u16 correctPassword = 1234;
     for (u16 i = 0; i < 3; i++) {
+        printf("You have %d tries left\n", 3 - i);
+        password = passwordScanner();
         if (password == -1) {
             printf("Password digits must be numbers\n");
-            password = passwordScanner();
         } else if (password == correctPassword) {
             return true;
         } else {
             printf("Wrong password, try again\n");
-            password = passwordScanner();
         }
     }
     return false;
@@ -40,6 +43,7 @@ void AdminMenu(){
                 EditPatientRecord();
                 break;
             case 3:
+
                 ReserveASlotWithTheDoctor();
                 break;
             case 4:
@@ -69,12 +73,7 @@ void EditPatientRecord (){
         printf("No Patients\n");
         return;
     }
-    printf("Enter Patient ID: ");
-    id = IntCheck();
-    while(id < 1 || id > 10){
-        printf("Please enter a valid ID: ");
-        id = IntCheck();
-    }
+    id = scanID(head);
     if(checkForPatient(head, id)) {
         data = getPatient(head, id);
         printPatient(data);
@@ -83,7 +82,7 @@ void EditPatientRecord (){
         printf("Enter new Patient Age: ");
         data->age = IntCheck();
         printf("Enter new Patient gender: ");
-        data->gender = StringCheck(10);
+        data->gender = GenderScan();
         updatePatient(head, data);
     }
     else{
@@ -91,67 +90,103 @@ void EditPatientRecord (){
     }
 }
 void ReserveASlotWithTheDoctor(){
-    Node* temp = NULL;
-    Patient* data;
-    int slot;
-    static char* SlotOptions[] = {"2:00 PM to 2:30 PM", "2:30 PM to 3:00 PM", "3:00 PM to 3:30 PM", "4:00 PM to 4:30 PM", "4:30 PM to 5:00 PM"};
-    for(u16 i = 0; i < 5; i++){
+    Node* node = NULL;
+    Patient* data = NULL;
+    u16 id = 0;
+    u16 slot = 0;
+    //check if all slots are reserved or not
+    if(checkIfAllSlotReserved()){
+        printf("All slots are reserved\n");
+        return;
+    }
+    //print the available slots
+    for(u16 i = 0; i < slotSize; i++){
         printf(" %d- %s\n", i+1, SlotOptions[i]);
     }
 
     printf(" Please enter the slot number: ");
-    scanf("%d", &slot);
-    scanf("%d", &data->id);
-    temp = search(head, data->id);
-    switch(slot){
-        case 1:
-            strcpy((char*)(data->slot), "2:00 PM to 2:30 PM");
-            SlotOptions[slot-1] = (char*) "Reserved";
-            break;
-        case 2:
-            strcpy((char*)(data->slot), "2:30 PM to 3:00 PM");
-            SlotOptions[slot-1] = (char*) "Reserved";
-            break;
-        case 3:
-            strcpy((char*)(data->slot), "3:00 PM to 3:30 PM");
-            SlotOptions[slot-1] = (char*) "Reserved";
-
-            break;
-        case 4:
-            strcpy((char*)(data->slot), "4:00 PM to 4:30 PM");
-            SlotOptions[slot-1] = (char*) "Reserved";
-
-            break;
-        case 5:
-            strcpy((char*)(data->slot), "4:30 PM to 5:00 PM");
-            SlotOptions[slot-1] = (char*) "Reserved";
-
-            break;
-        default:
-            printf(" Invalid slot\n");
-            break;
+    slot = IntCheck();
+    //check if the slot is in the range 1->5
+    while(slot < 1 || slot > slotSize){
+        printf("Please enter a valid slot number: ");
+        slot = IntCheck();
+    }
+    //check if the slot is reserved or not
+    if( strcmp(SlotOptions[slot-1],(char*)"Not Available") == 0){
+        printf("Slot is already reserved\n");
+        return;
+    }
+    //get the patient ID
+    id = scanID(head);
+    //search for the patient
+    node = search(head, id);
+    //check if the patient is found
+    if(!checkForPatient(head, id)){
+        printf("Patient not found\n");
+        return;
+    }
+    //get the patient data
+    data = node->data;
+    //check if the slot is reserved
+    if(data->slotReserved){
+        printf("Patient already has a reservation\n");
+        return;
+    }
+    //reserve the slot
+    for(u16 i = 0; i < slotSize; i++){
+        if(i == slot-1) {
+            //reserve the slot for the patient
+            strcpy((char *) (data->slot), (const char *)SlotOptions[i]);
+            //set the slot reserved flag
+            data->slotReserved = slot;
+            printf("Slot reserved successfully\n");
+            //set the slot to not available
+            SlotOptions[i] = (char*)"Not Available";
+        }
     }
 
+
 }
+bool checkIfAllSlotReserved(){
+    for(u16 i = 0; i < slotSize; i++){
+        if(strcmp(SlotOptions[i], (char*)"Not Available") != 0){ //check if the slot is not reserved
+            return false;
+        }
+    }
+    return true;
 
+}
+bool checkIfAllSlotNotReserved(){
+    for(u16 i = 0; i < slotSize; i++){
+        if(strcmp(SlotOptions[i], (char*)"Not Available") == 0){ //check if the slot is reserved
+            return false;
+        }
+    }
+    return true;
 
+}
 void CancelReservation(){
     u16 id;
     Patient* data = NULL;
+    //check if the list is empty
     if(head == NULL) {
         printf("No Patients\n");
         return;
     }
-    printf("Enter Patient ID: ");
-    id = IntCheck();
-    while(id < 1 || id > 10){
-        printf("Please enter a valid ID: ");
-        id = IntCheck();
+    //check if all slots are not reserved
+    if(checkIfAllSlotNotReserved()){
+        printf("All slots are not reserved\n");
+        return;
     }
+    //get the patient ID
+    id = scanID(head);
     if(checkForPatient(head, id)) {
         data = getPatient(head, id);
+
         if(data->slotReserved){
-            data->slotReserved = false;
+            setSlotAvailable(data->slotReserved);
+            printf("Reservation canceled successfully\n");
+            data->slotReserved = 0;
             strcpy((char*)(data->slot), "Not Reserved");
         }
         else{
@@ -162,6 +197,27 @@ void CancelReservation(){
         printf("Patient not found\n");
     }
 }
-Node* getHead(){
-    return head;
+void setSlotAvailable(u16 slot){
+    switch (slot) {
+        case 1:
+            SlotOptions[0] = (char*)"2:00 PM to 2:30 PM";
+            break;
+        case 2:
+            SlotOptions[1] = (char*)"2:30 PM to 3:00 PM";
+            break;
+        case 3:
+            SlotOptions[2] = (char*)"3:00 PM to 3:30 PM";
+            break;
+        case 4:
+            SlotOptions[3] = (char*)"4:00 PM to 4:30 PM";
+            break;
+        case 5:
+            SlotOptions[4] = (char*)"4:30 PM to 5:00 PM";
+            break;
+        default:
+            break;
+
+    }
+
+
 }

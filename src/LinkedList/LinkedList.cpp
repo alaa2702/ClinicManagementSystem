@@ -48,8 +48,11 @@ void insertAtIndex(Node** head, Patient* data){
         *head = newNode;
         return;
     }
-    for (u16 i = 0; i < index; i++){
+    //insert at end of the list
+
+    while(last->next != NULL&& index != 0){
         last = last->next;
+        index--;
     }
     newNode->next = last->next;
     last->next = newNode;
